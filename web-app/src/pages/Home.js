@@ -6,19 +6,19 @@ import UserChoiceButton from '../components/UserChoiceButton/UserChoiceButton';
 import SubmitButton from '../components/SubmitButton/SubmitButton';
 import { useNavigate } from 'react-router-dom';
 
-const RESULTS_URL = "";
-let loaded_json;
-
-// store the current state of the button
-// keep track of the list of toggled on buttons - max 3 values in the list
 
 export default function Home(setResults) {
     const [clickedButtons, setClickedButtons] = useState([]);
+
+    // make a global var (highest scope is Home) inside Home called 'clickedButtons'
+    // to change that global var, i can only change it by calling 'setClickedButtons(clickedButtons)
+
     const navigate = useNavigate();
 
     // set limit to 3 choices only
-    const handleButtonToggle = (buttonText, isClicked) => {
-        
+    const handleButtonToggle = (buttonText, isClicked) => { 
+        // buttontext: text on the button,
+        // isClicked: a boolean value showing whether or not button is clicked
         if (isClicked) {
           setClickedButtons((prevButtons) => {
             const updatedButtons = [...prevButtons, buttonText] //.slice(-3); // Add buttonText and limit array length to 3

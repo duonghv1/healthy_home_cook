@@ -1,55 +1,60 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 import './SubmitButton.css';
 
-const RESULTS_URL = "http://127.0.0.1:5000/data?";
-// http://127.0.0.1:5000/data?n1=value1&n2=value2&n3=value3
+const DATA_IP_ADDR = "http://54.177.115.132:5000/getRecipes?";
 
-const SubmitButton = (choices, setResults) => { // choices is a list: ['D', 'A', 'B12'] etc
-    
-    
+const SubmitButton = (params) => { // choices is a list: ['D', 'A', 'B12'] etc
+    const navigate = useNavigate();
+    const choices = params['choices'];
+    const setResults = params['setResults'];
+
     const handleClick = () => {
-        console.log('Button clicked!');
-        // format query to backend (see ex. query above)
+        console.log('everthing about choices', choices, typeof choices);
+
         let search_params = {
             "n1": "None",
             "n2": "None", 
             "n3": "None"
         };
 
-        const getQuery = () => {
-            for (let i = 0; i < choices.length; ++i) {
-                search_params["n" + i] = choices[i];
-            }
+        // format query to backend (see ex. query above)
+        for (let i = 0; i < choices.length; ++i) {
+            search_params["n" + (i + 1)] = choices[i];
         }
+
+        console.log('search_params', search_params);
+
+        let query = DATA_IP_ADDR;
+        for (let i = 0; i < Object.keys(search_params).length; ++i) {
+            let property = Object.keys(search_params)[i];
+            if (i != 0) {
+                query += "&";
+            }
+            query += property + "=" + search_params[property];   
+        }
+        console.log(query);
 
         const fetchData = async () => {
-            let query = RESULTS_URL;
-            for (let i = 0; i < Object.keys(search_params).length; ++i) {
-                let property = Object.keys(search_params)[i]
-                if (i != 0) {
-                    query += "&";
-                }
-                query += property + "=" + search_params[property];   
-            }
             try {
                 const response = await fetch(query);
-                const jsdonData = await response.json();
-                
+                const jsonData = await response.json();
+                console.log(jsonData);
+                setResults((prevResults) => { // prevResults is a list
+                    const updatedResults = [...prevResults, jsonData];
+                    return updatedResults;
+                });
             }
             catch (error) {
-                pass;
+                alert("Error: ", error);
             }
-        }
-
-
+        };
         fetchData();
-        // send query to backend
-        // receive json and set to global variable
-        // indicate end? switch to Results page
-       
+        navigate("/results");
     }
-    
+       
     // graded out when clicked on
     return (
         <button className="submit-button" onClick={handleClick}>
