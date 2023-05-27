@@ -8,7 +8,7 @@ app = Flask(__name__)
 # http://127.0.0.1:5000/data?n1=value1&n2=value2&n3=value3
 
 min_amount = 50
-num_recipe = 10
+num_recipe = 5
 
 
 # @app.route("/getRecipeInstr")
@@ -206,7 +206,6 @@ def get_recipes():
 
     return json_data
     # return render_template("recipes.html", recipes=info["results"])
-
 
 if __name__ == '__main__':
     app.run(debug=True)
