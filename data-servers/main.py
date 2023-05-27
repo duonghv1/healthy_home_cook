@@ -46,10 +46,16 @@ def get_recipes():
         # Access the JSON data from the response
         json_data = response.json()
         # Process the JSON data as needed
-        print(json_data, type(json_data[0]))
+        print(type(json_data[0]))
+        # print(json_data[0])
     else:
         # Print the error message if the request was unsuccessful
         print("Error:", response.status_code)
+
+    for val in json_data:
+        del val["carbs"]
+        del val["fat"]
+        del val["protein"]
 
     return json_data
     # return render_template("recipes.html", recipes=info["results"])
