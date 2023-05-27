@@ -1,0 +1,15 @@
+
+
+nav ul {
+    padding: 0; /* the default <ul> element has some padding on the left side */
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    list-style: none;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: rgb(72, 72, 72);
+    font-size: 20px;
+}
