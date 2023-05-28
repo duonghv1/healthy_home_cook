@@ -1,0 +1,41 @@
+
+.home-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    /* background-image: url("https://images.pexels.com/photos/616401/pexels-photo-616401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: cover;
+    background-position: center; */
+}
+
+
+.container {
+    min-height: 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+}
+
+.text-style{
+    font-size: 32px;
+    font-weight: bold;
+    font-family: 'georgia';
+    /* font-family:"Andale Mono", monospace; */
+}
+
+h1{
+    font-family: 'georgia';
+    /* font-family: "Andale Mono", monospace;     */
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("https://img.freepik.com/premium-photo/herb-spices-cooking-background_136595-562.jpg?w=996");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0);
+    
+    /* https://png.pngtree.com/thumb_back/fh260/background/20190222/ourmid/pngtree-simple-beige-banner-background-material-backgroundsimpleposter-backgroundbanner-backgroundbackground-image_51299.jpg */
+  }
