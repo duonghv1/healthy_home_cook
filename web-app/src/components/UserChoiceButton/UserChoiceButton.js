@@ -10,7 +10,7 @@ const UserChoiceButton = ( {text} ) => {
     
     // graded out when clicked on
     return (
-        <button className="user-choice-button" onClick={handleClick}>
+        <button className="nutrient-button" onClick={handleClick}>
         {text} 
         </button>
     );

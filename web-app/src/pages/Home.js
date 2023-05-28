@@ -1,20 +1,18 @@
 // src/components/Home.js
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Home.css'
 import NutrientButton from '../components/NutrientButton/NutrientButton';
 import UserChoiceButton from '../components/UserChoiceButton/UserChoiceButton';
 import SubmitButton from '../components/SubmitButton/SubmitButton';
-import { useNavigate } from 'react-router-dom';
 
 
-export default function Home(setResults) {
-    const [clickedButtons, setClickedButtons] = useState([]);
-
-    // make a global var (highest scope is Home) inside Home called 'clickedButtons'
-    // to change that global var, i can only change it by calling 'setClickedButtons(clickedButtons)
-
-    const navigate = useNavigate();
-
+export default function Home({setResults, clickedButtons, setClickedButtons}) {
+    useEffect(() => {
+        setClickedButtons((prevButtons) => []);
+        // Reset state when component mounts or navigates to the home page
+        
+    }, []);
+   
     // set limit to 3 choices only
     const handleButtonToggle = (buttonText, isClicked) => { 
         // buttontext: text on the button,
@@ -31,20 +29,25 @@ export default function Home(setResults) {
         }
     };
 
-
     useEffect(() => {
-        console.log(clickedButtons)
+        console.log(clickedButtons);
         // navigate('/resultjs', {state: { results: [1, 2 , 3]}})
     }, [clickedButtons])
 
     return(
-        <>
+        <div className='home-container'>
         <div className="picked-nutrients">
-            <p>Pick up to 3 nutrients: </p>
+            <p class="text-style">Pick up to 3 nutrients: </p>
+            <div className='container'>
+            {clickedButtons.map((buttonText, index) => (
+                <UserChoiceButton text={buttonText}/>
+            ))}
+            </div>
+
         </div>
         <div className="choose-your-nutrients">
             <h1>Vitamins</h1>
-            <div>
+            <div className='container'>
                 <NutrientButton text="D" onToggle={handleButtonToggle} clicked={clickedButtons}/>
                 <NutrientButton text="B12" onToggle={handleButtonToggle} clicked={clickedButtons}/>
                 <NutrientButton text="A" onToggle={handleButtonToggle} clicked={clickedButtons} />
@@ -52,7 +55,7 @@ export default function Home(setResults) {
             </div>
             
             <h1>Other Nutrients</h1>
-            <div>
+            <div className='container'>
                 <NutrientButton text="Iodine" onToggle={handleButtonToggle} clicked={clickedButtons}/>
                 <NutrientButton text="Iron" onToggle={handleButtonToggle} clicked={clickedButtons}/>
                 <NutrientButton text="Magnesium" onToggle={handleButtonToggle} clicked={clickedButtons}/>
@@ -63,6 +66,6 @@ export default function Home(setResults) {
             </div>
 
         </div>
-        </>
+        </div>
     );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 
 
 import './SubmitButton.css';
@@ -51,6 +51,7 @@ const SubmitButton = (params) => { // choices is a list: ['D', 'A', 'B12'] etc
                 alert("Error: ", error);
             }
         };
+
         fetchData();
         navigate("/results");
     }

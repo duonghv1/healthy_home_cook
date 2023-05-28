@@ -31,7 +31,7 @@ const NutrientButton = ({ text, onToggle, clicked}) => {
     
     // change color when clicked on
     return (
-        <button className={className} onClick={handleClick}>
+        <button className={"nutrient-button " + className} onClick={handleClick}>
         {text}
         </button>
     );

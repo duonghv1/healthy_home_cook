@@ -7,7 +7,7 @@ export default function Navbar() {
         <Nav>
         <ul>
             <li>
-              <NavLink to="/home">Healthy Home Cook</NavLink>
+              <NavLink to="/">Healthy Home Cook</NavLink>
             </li>
         </ul>
         </Nav>

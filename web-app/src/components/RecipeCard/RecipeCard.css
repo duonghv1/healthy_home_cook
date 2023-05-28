@@ -1,0 +1,55 @@
+/* .box{
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+    height: 400px;
+}
+
+.box img {
+    max-width: 100%;
+    height: 200px;
+} */
+
+
+.project-card {
+    width: 300px;
+    height: auto;
+    transition: all 0.3s ease;
+    background-color: lightgray;
+    border-radius: 20px;
+    padding: 40px;
+    margin: auto;
+    cursor: pointer;
+    justify-self: center;
+    align-self: center;
+}
+
+.card-img {
+    width: 300px;
+    height: 200px;
+}
+
+.card-title {
+    text-align: center;
+}
+
+/* .card-desc {
+    text-align: center;
+    margin-bottom: 20px;
+} */
+
+.project-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+/* .like-count {
+font-size: 0.9rem;
+font-weight: bold;
+} */
+
+button {
+    background-color: white;
+    border-width: 0px;
+}
