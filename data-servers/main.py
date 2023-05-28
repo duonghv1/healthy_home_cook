@@ -12,7 +12,7 @@ load_dotenv()
 # http://127.0.0.1:5000/data?n1=value1&n2=value2&n3=value3
 
 min_amount = 50
-num_recipe = 5
+num_recipe = 3
 
 recipe_dic = {}
 max_limit = 30
