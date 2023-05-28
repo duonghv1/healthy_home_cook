@@ -34,7 +34,3 @@ Healthy Home Cook is a website that allows users to filter for recipes according
 
 <img src="https://github.com/duonghv1/healthy_home_cook/blob/main/visualization/image1.png" width=500><br>
 <img src="https://github.com/duonghv1/healthy_home_cook/blob/main/visualization/image2.png" width=500><br>
-
-### Notes
-
-Found libs folder when I switched from "Android" to "Project Files", not under "Projects". I'm working on Shared element right now and the makeSceneTransitionAnimation keeps raising an error. 
