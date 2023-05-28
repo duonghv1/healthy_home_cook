@@ -9,7 +9,7 @@ Healthy Home Cook is a website that allows users to filter for recipes according
 - [x] Allow users to search for recipes according to nutrients they are lacking.
 - [x] Display recipes basic information to look up.
 - [x] Show recipes detailed insturctions in a pop-up window if users click on the recipe flash card they are interested in.
-
+- [x] Users can unselect the nutrient, by reclick the nutrient button. User can always go to the home page if they click the header.
 
 #### Extra
 
