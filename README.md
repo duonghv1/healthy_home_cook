@@ -32,7 +32,8 @@ Healthy Home Cook is a website that allows users to filter for recipes according
 
 ### Website Walkthough
 
-<img src="https://github.com/duonghv1/healthy_home_cook/blob/main/visualization/image1.png" width=250><br>
+<img src="https://github.com/duonghv1/healthy_home_cook/blob/main/visualization/image1.png" width=500><br>
+<img src="https://github.com/duonghv1/healthy_home_cook/blob/main/visualization/image1.png" width=500><br>
 
 ### Notes
 
