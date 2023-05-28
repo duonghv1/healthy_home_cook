@@ -21,7 +21,7 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
     };
 
     const getQuery = () => {
-        console.log()
+        console.log("recipe: ", recipe);
         return RECIPE_CONTENT_IP_ADDR + "id=" + recipe.id;
     }
 
@@ -33,7 +33,11 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
             try {
                 const response = await fetch(query);
                 const jsonData = await response.json();
-                console.log("json data: ", jsonData);             
+                console.log("json data: ", jsonData);
+                // setRecipeContent((prevRecipeContent) => { // prevRecipeContent is a list
+                //     const updatedRecipeContent = {...prevRecipeContent, [recipe.id]: jsonData};
+                //     return updatedRecipeContent;
+                // });
                 return jsonData;
             }
             catch (error) {
@@ -84,52 +88,18 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
             console.log("ingredients: ", ingredients);
             console.log("instruction: ", instruction);
         })
-        .then(() => {
-            return (
-                // <div className={isExpanded ? 'expanded-project-card' : 'project-card'}>
-                <div className='project-card'>
-                    <div onClick={toggleExpansion}>
-                        <img src={recipe['image']}  className="card-img"  alt="Image of a recipe" />
-                        <h2 className="card-title">{recipe['title']}</h2>
-                        <div className='recipe-info'>
-                            <h3>General Information</h3>
-                            {console.log("recipe:", recipe, userchoices)}
-                            <p>
-                                {userchoices.map((choice) => (choice + ': ' + recipe[choice.toLowerCase()] + '\n'))}
-                            </p>
-                        </div>
-                        {/* {isExpanded && 
-                            <>
-                                <div className='recipe-info'>
-                                    <p>{"Cook Time: " + recipe_content.readyInMinutes}</p>
-                                    <p>{"Serving Size: " + recipe_content.servings}</p>
-                                </div>
-                                <div>
-                                    <h3>Ingredients</h3>
-                                    <ul>
-                                        <li>{ingredients.map((ingredient) => (formattedRecipeIngredient(ingredient)))}</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h3>instruction</h3>
-                                    <p>
-                                        {instruction.map((instruction_block) => (recipeInstructionBlock(instruction_block)))}
-                                    </p>
-                                </div>
-                            </>
-                        } */}
-                    </div>
-                </div>
-            )
-        })
+        .then(() => render_page())
         .catch((error) => {
             // Handle any errors that occurred during the promise execution
             console.error("Error retrieving recipe content:", error);
         });
     
+    // const expand_box = () => {
+    //     var popup = document.getElementById("popup");
+    //     popup.classList.toggle("show");
+    // }
 
     const render_page = () => {
-        console.log("got here");
         return (
         // <div className={isExpanded ? 'expanded-project-card' : 'project-card'}>
         <div className='project-card'>
@@ -144,7 +114,8 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
                     </p>
                 </div>
                 {/* {isExpanded && 
-                    <>
+                    {expand_box()}
+                    <div class="popup" id="popup">
                         <div className='recipe-info'>
                             <p>{"Cook Time: " + recipe_content.readyInMinutes}</p>
                             <p>{"Serving Size: " + recipe_content.servings}</p>
@@ -161,7 +132,7 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
                                 {instruction.map((instruction_block) => (recipeInstructionBlock(instruction_block)))}
                             </p>
                         </div>
-                    </>
+                    </div>
                 } */}
             </div>
         </div>
