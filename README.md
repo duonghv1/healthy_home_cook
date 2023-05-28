@@ -1,5 +1,5 @@
 # Healthy_Home_Cook
-Healthy Home Cook is a website that allows users to filter for recipes according to their nutritional needs.
+Healthy Home Cook is a website that allows users to filter for recipes according to their nutritional needs. Users can choose up to three nutrients they want to include in the cuisine, and the Healthy Home Cook web application will show up all potential recipes allowing users to pick.
 
 ---
 ## Healthy_Home_Cook Information
@@ -21,10 +21,10 @@ Healthy Home Cook is a website that allows users to filter for recipes according
 
 ### Tech Stacks
 
-#### Front End
+#### **Front End**
 - [React](https://react.dev/) - Open source JavaScript library for UI for website application.
 - [Figma](https://www.figma.com/?fuid=) - Design platform for preliminary website design and CSS programming.
-#### Back End
+#### **Back End**
 - [spoonacular API](https://spoonacular.com/food-api) - Simple food and recipe API.
 - [Amazon Web Services](https://aws.amazon.com/) - Host backend server on AWS cloude.
 - [Flask Python](https://flask.palletsprojects.com/en/2.0.x/installation/) - Handle request, query API, and integrate data.
