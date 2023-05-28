@@ -6,45 +6,55 @@
 
 import './Results.css'
 import RecipeCard from '../components/RecipeCard/RecipeCard';
-import { useNavigate } from 'react-router-dom';
-import React, { useEffect } from 'react'
+import React, { useState } from 'react'
 
 export default function Results({results, clickedButtons}) {
     // const navigate = useNavigate();
     // if (results.length == 0){
     //     navigate("/results");
     // }
-    if (results.length == 0){
+    const [recipeContent, setRecipeContent] = useState({});
+    
+    if (results.length === 0){
         return;
     }
     
-    const result = results[results.length - 1];
-    console.log("in results, showing most recent result list:", results);
+    const latest_result = results[results.length - 1];
+    console.log("in results, showing most recent result list:", latest_result);
+
+    if (latest_result.length === 0){
+        console.log("`result` has nothing in there!");
+        return (
+            <>
+            <div className="nutrients-chosen"> 
+                <p class = "results">RESULTS FOR:</p>
+                <p class="nutrients-display">{clickedButtons.join(" - ")}</p>
+            </div>
+            <div className="recipe-card-container"></div>
+            <h2>No results found.</h2>
+            </>
+        )
+    }else{
+        return(
+            <>
+            <div className="nutrients-chosen"> 
+                <p class = "results">RESULTS FOR:</p>
+                <p class="nutrients-display">{clickedButtons.join(" - ")}</p>
+            </div>
+            <div className="recipe-card-container">
+                
+            
+            {latest_result.map((recipe) => {
+                console.log("In results.js, recipe is: ", recipe, typeof recipe);
+                return <RecipeCard recipe={recipe} userchoices={clickedButtons} recipeContent={recipeContent} setRecipeContent={setRecipeContent}/>;
+            })}
+            </div>
+            </>
+        );
+    }
     
 
-    const fillChoiceAmounts = (recipe) => {
-        let choice_amounts = {};
-        for (let i = 0; i < clickedButtons.length; ++i) {
-            choice_amounts[clickedButtons[i]] = recipe[clickedButtons[i]];
-        }
-        return choice_amounts;
-    }
-
-    return(
-        <>
-        <div className="nutrients chosen"> 
-            <p>RESULTS FOR:</p>
-            <p>{clickedButtons.join(" - ")}</p>
-        </div>
-        <div className="recipe-card-container">
-        {result.map((recipe) => {
-            console.log("recipe", recipe, typeof recipe);
-            return <RecipeCard recipe={recipe} userchoices={clickedButtons}/>;
-        })}
-        </div>
-        </>
-        
-    );
+   
 }
 
 

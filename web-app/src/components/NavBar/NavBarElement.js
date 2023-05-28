@@ -6,9 +6,10 @@ export const Nav = styled.nav`
   justify-content: left;
 `;
 
-
+  
 export const NavLink = styled(Link)`
-  color: #808080;
+  color: #000000;//results page
+  font-family: 'georgia';
   font-size: 40px;
   display: flex;
   align-items: center;
@@ -17,6 +18,7 @@ export const NavLink = styled(Link)`
   height: 100%;
   cursor: pointer;
   &.active {
-    color: #000000;
+    color: #000000;//home page
+    font-family: 'georgia';
   }
 `;

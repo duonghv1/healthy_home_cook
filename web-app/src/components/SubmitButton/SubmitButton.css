@@ -2,15 +2,15 @@
     position: relative;
     left: 325px;
     right: 150px;
-    top: 45px;
-    background: #A7D489;
+    top: 35px;
+    background: rgb(236, 239, 166);
     border: 2px solid #000000;
-    height: 60px;
+    height: 75px;
     width: 250px;
     font-size: 24px;
     font-weight: bold;
     border-radius: 8px;
-    font-family: "Andale Mono", monospace;
+    font-family: 'georgia';
     border: none;
 }
     

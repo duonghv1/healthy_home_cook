@@ -12,7 +12,7 @@ export default function Home({setResults, clickedButtons, setClickedButtons}) {
         // Reset state when component mounts or navigates to the home page
         
     }, []);
-   
+
     // set limit to 3 choices only
     const handleButtonToggle = (buttonText, isClicked) => { 
         // buttontext: text on the button,
@@ -36,36 +36,36 @@ export default function Home({setResults, clickedButtons, setClickedButtons}) {
 
     return(
         <div className='home-container'>
-        <div className="picked-nutrients">
-            <p class="text-style">Pick up to 3 nutrients: </p>
-            <div className='container'>
-            {clickedButtons.map((buttonText, index) => (
-                <UserChoiceButton text={buttonText}/>
-            ))}
-            </div>
+        
+            <div className="picked-nutrients">
+                <p class="text-style">Pick up to 3 nutrients: </p>
+                <div className='container'>
+                {clickedButtons.map((buttonText, index) => (
+                    <UserChoiceButton text={buttonText}/>
+                ))}
+                </div>
 
-        </div>
-        <div className="choose-your-nutrients">
-            <h1>Vitamins</h1>
-            <div className='container'>
-                <NutrientButton text="D" onToggle={handleButtonToggle} clicked={clickedButtons}/>
-                <NutrientButton text="B12" onToggle={handleButtonToggle} clicked={clickedButtons}/>
-                <NutrientButton text="A" onToggle={handleButtonToggle} clicked={clickedButtons} />
-                <NutrientButton text="C" onToggle={handleButtonToggle} clicked={clickedButtons}/>
             </div>
-            
-            <h1>Other Nutrients</h1>
-            <div className='container'>
-                <NutrientButton text="Iodine" onToggle={handleButtonToggle} clicked={clickedButtons}/>
-                <NutrientButton text="Iron" onToggle={handleButtonToggle} clicked={clickedButtons}/>
-                <NutrientButton text="Magnesium" onToggle={handleButtonToggle} clicked={clickedButtons}/>
-                <NutrientButton text="Calcium" onToggle={handleButtonToggle} clicked={clickedButtons}/>
+            <div className="choose-your-nutrients">
+                <h1>Vitamins</h1>
+                <div className='container'>
+                    <NutrientButton text="D" onToggle={handleButtonToggle} clicked={clickedButtons}/>
+                    <NutrientButton text="B12" onToggle={handleButtonToggle} clicked={clickedButtons}/>
+                    <NutrientButton text="A" onToggle={handleButtonToggle} clicked={clickedButtons} />
+                    <NutrientButton text="C" onToggle={handleButtonToggle} clicked={clickedButtons}/>
+                </div>
+                
+                <h1>Other Nutrients</h1>
+                <div className='container'>
+                    <NutrientButton text="Iodine" onToggle={handleButtonToggle} clicked={clickedButtons}/>
+                    <NutrientButton text="Iron" onToggle={handleButtonToggle} clicked={clickedButtons}/>
+                    <NutrientButton text="Magnesium" onToggle={handleButtonToggle} clicked={clickedButtons}/>
+                    <NutrientButton text="Calcium" onToggle={handleButtonToggle} clicked={clickedButtons}/>
+                </div>
+                <div>
+                    <SubmitButton text="Submit" choices={clickedButtons} setResults={setResults} />
+                </div>
             </div>
-            <div>
-                <SubmitButton text="Submit" choices={clickedButtons} setResults={setResults} />
-            </div>
-
-        </div>
         </div>
     );
 }

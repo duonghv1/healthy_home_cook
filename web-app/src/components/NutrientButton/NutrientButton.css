@@ -7,11 +7,14 @@
     padding: 16px 0;
     border-radius: 8px;
     width: 100%;
-    font-family:"Andale Mono", monospace;    
+    font-family: 'georgia'; 
     font-size: 24px;
     border: none;
+    color: rgb(0, 0, 0);
 }
 
 .button-clicked {
-    background-color: #D9D9D9;
+    background: #A7D489;
+    filter: brightness(0.75);
+    color: grey;
   }

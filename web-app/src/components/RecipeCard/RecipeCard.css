@@ -12,25 +12,35 @@
 
 
 .project-card {
-    width: 300px;
-    height: auto;
+    width: 350px;
+    height: 450px;
     transition: all 0.3s ease;
     background-color: lightgray;
     border-radius: 20px;
     padding: 40px;
-    margin: auto;
+    margin: 5px;
     cursor: pointer;
     justify-self: center;
     align-self: center;
 }
 
 .card-img {
-    width: 300px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
 }
 
 .card-title {
     text-align: center;
+    font-family:"Andale Mono", monospace;
+}
+
+h3{
+    font-family:"Andale Mono", monospace;
+}
+
+p{
+    font-family:"Andale Mono", monospace;
+    margin-top: 5px;
 }
 
 /* .card-desc {
