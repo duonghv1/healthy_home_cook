@@ -9,8 +9,11 @@ import RecipeCard from '../components/RecipeCard/RecipeCard';
 import React, { useState } from 'react'
 
 export default function Results({results, clickedButtons}) {
- 
-    // const [recipeContent, setRecipeContent] = useState({});
+    // const navigate = useNavigate();
+    // if (results.length == 0){
+    //     navigate("/results");
+    // }
+    const [recipeContent, setRecipeContent] = useState({});
     
     if (results.length === 0){
         return;
@@ -48,5 +51,12 @@ export default function Results({results, clickedButtons}) {
             </div>
             </>
         );
-    }  
+    }
+    
+
+   
 }
+
+
+
+

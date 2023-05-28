@@ -21,13 +21,10 @@
 .card-title {
     text-align: center;
     font-family:"Andale Mono", monospace;
-    max-height: 60px;
 }
 
 h3{
     font-family:"Andale Mono", monospace;
-    margin: 0px;
-
 }
 
 p{
