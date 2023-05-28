@@ -1,28 +1,36 @@
 from flask import Flask, render_template, request
 import requests, json
-
+from flask_cors import CORS
+from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
+CORS(app)
+load_dotenv()
+
 # perdetermined list of nutrients to choose from
 # http://127.0.0.1:5000/data?n1=value1&n2=value2&n3=value3
 
 min_amount = 50
 num_recipe = 5
 
+recipe_dic = {}
+max_limit = 30
 
 # @app.route("/getRecipeInstr")
 def get_recipe_instr(rid):
     # Sample URL: http://127.0.0.1:5000/getRecipeInstr?id=324694
     # Retrieve multiple query parameters from the request URL
     rid = request.args.get("id")
-
+    
     url = f"https://api.spoonacular.com/recipes/{rid}/analyzedInstructions?apiKey={os.environ.get('Spoon_api_key')}"
     print(url)
     print("api key:", os.environ.get("Spoon_api_key"))
     
     # response = urllib.request.urlopen(url)
     response = requests.get(url)
+
+    json_data = {"name":""}
 
     # Check if the request was successful (HTTP status code 200)
     if response.status_code == 200:
@@ -52,7 +60,7 @@ def get_recipe_instr(rid):
             parts.append(step)
         # print()
         result.append(parts)
-    print(json_data)
+    #print(json_data)
 
     return result
     # return render_template("recipes.html", recipes=info["results"])
@@ -76,13 +84,14 @@ def get_recipes_ingredients(rid):
         url_component += f"{rid}"
 
     url = f"https://api.spoonacular.com/recipes/" + url_component + f"/ingredientWidget.json?apiKey={os.environ.get('Spoon_api_key')}"
-    print(url)
-    print("api key:", os.environ.get("Spoon_api_key"))
+    # print(url)
+    # print("api key:", os.environ.get("Spoon_api_key"))
     
     # response = urllib.request.urlopen(url)
     response = requests.get(url)
-    print(response)
+    #print(response)
 
+    json_data = {};
     # Check if the request was successful (HTTP status code 200)
     if response.status_code == 200:
         # Access the JSON data from the response
@@ -104,7 +113,7 @@ def get_recipes_ingredients(rid):
     return json_data
 
 
-@app.route("/getRecipeInfo")
+@app.route("/getRecipeInfo", methods=["GET", "POST"])
 def get_recipes_info():
     # Sample URL: http://127.0.0.1:5000/getRecipeInfo?id=716429
     # Retrieve ID query parameters from the request URL
@@ -124,35 +133,44 @@ def get_recipes_info():
     url = f"https://api.spoonacular.com/recipes/" + url_component + f"/information?apiKey={os.environ.get('Spoon_api_key')}" + f"&includeNutrition=false"
     
     #f"https://api.spoonacular.com/recipes/findByNutrients?apiKey={os.environ.get('Spoon_api_key')}" + url_component
-    print(url)
-    print("api key:", os.environ.get("Spoon_api_key"))
-    
-    # response = urllib.request.urlopen(url)
-    response = requests.get(url)
-    #print(response)
+    # print(url)
+    # print("api key:", os.environ.get("Spoon_api_key"))
+    if len(recipe_dic) == max_limit:
+        recipe_dic.clear()
 
-    # Check if the request was successful (HTTP status code 200)
-    if response.status_code == 200:
-        # Access the JSON data from the response
-        json_data = response.json()
-        # print(json_data[0])
+    json_data_final = {} 
+
+    if rid not in recipe_dic.keys():
+        response = requests.get(url)
+        json_data = {}
+        # Check if the request was successful (HTTP status code 200)
+        if response.status_code == 200:
+            # Access the JSON data from the response
+            json_data = response.json()
+            # print(json_data[0])
+        else:
+            # Print the error message if the request was unsuccessful
+            print("Error:", response.status_code)
+
+        
+        if json_data != {}:
+            json_data_final["servings"] = json_data["servings"]
+            json_data_final["readyInMinutes"] = json_data["readyInMinutes"]
+
+        json_data_instr = get_recipe_instr(rid)
+        json_data_ingredient = get_recipes_ingredients(rid)
+
+        # print(json_data_instr)
+
+        json_data_instr = {"instruction": json_data_instr}
+        json_data_final.update(json_data_ingredient)
+        json_data_final.update(json_data_instr)
+
+        recipe_dic[rid] = json_data_final
+        #print(response)
     else:
-        # Print the error message if the request was unsuccessful
-        print("Error:", response.status_code)
-
-    json_data_final = {}
-    json_data_final["servings"] = json_data["servings"]
-    json_data_final["readyInMinutes"] = json_data["readyInMinutes"]
-
-    json_data_instr = get_recipe_instr(rid)
-    json_data_ingredient = get_recipes_ingredients(rid)
-
-    # print(json_data_instr)
-
-    json_data_instr = {"instruction": json_data_instr}
-
-    json_data_final.update(json_data_ingredient)
-    json_data_final.update(json_data_instr)
+        print("data retrieved from dictionary")
+        json_data_final = recipe_dic[rid]
 
     # print(json_data_final)
     
@@ -160,8 +178,9 @@ def get_recipes_info():
     # return render_template("recipes.html", recipes=info["results"])
 
 
-@app.route("/getRecipes")
+@app.route("/getRecipes", methods=["GET", "POST"])
 def get_recipes():
+    print(os.environ.get('Spoon_api_key'))
     # Retrieve multiple query parameters from the request URL
     # Types of n1, n2, n3 -> String
     n1 = request.args.get("n1")
@@ -174,22 +193,25 @@ def get_recipes():
         print("Error: INVALID REQUEST")
         return
     url_component=""
-    if n1 is not None:
+    if n1 != "None":
         url_component += f"&min{n1}={min_amount}"
-    if n2 is not None:
+    if n2 != "None":
         url_component += f"&min{n2}={min_amount}"
-    if n3 is not None:
+    if n3 != "None":
         url_component += f"&min{n3}={min_amount}"
     url_component += f"&number={num_recipe}"
 
     url = f"https://api.spoonacular.com/recipes/findByNutrients?apiKey={os.environ.get('Spoon_api_key')}" + url_component
-    # print(url)
+    print(url)
     # print("api key:", os.environ.get("Spoon_api_key"))
     
     # response = urllib.request.urlopen(url)
     response = requests.get(url)
+    
+    json_data = [{"carbs":"", "fat":"", "protein":""}]
 
     # Check if the request was successful (HTTP status code 200)
+    print(response.status_code)
     if response.status_code == 200:
         # Access the JSON data from the response
         json_data = response.json()
@@ -206,6 +228,7 @@ def get_recipes():
 
     return json_data
     # return render_template("recipes.html", recipes=info["results"])
+
 
 if __name__ == '__main__':
     app.run(debug=True)
