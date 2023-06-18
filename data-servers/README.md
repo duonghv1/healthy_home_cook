@@ -1,5 +1,3 @@
-This project used the template of [Flask-Charts-Youtube-Tutorials](https://github.com/soumilshah1995/Flask-Charts-Youtube-Tutorials-/tree/master)
-
 ## API Setup
 We are using APILayer for Spoonacular API
 Please visit [APILayer](https://apilayer.com/marketplace/spoonacular-api#endpoints) to sign up and retrieve your API key.
