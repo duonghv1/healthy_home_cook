@@ -49,7 +49,7 @@ def api_test():
 
     #Example URL: https://api.apilayer.com/spoonacular/recipes/complexSearch?query=%20&minCalories=10
     url = f"https://api.apilayer.com/spoonacular/recipes/complexSearch?query=%20&addRecipeInformation=true" + url_component
-    print(url)
+    # print(url)
 
     payload = {}
     headers= {"apikey": os.environ.get('Spoon_api_key')}
