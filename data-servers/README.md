@@ -18,8 +18,8 @@ This webpage is hosted on AWS EC2 instance, and below instructions applied to ma
 
 
 ## Library Install
-### [python-dotenv](https://pypi.org/project/python-dotenv/):`pip install -U flask-cors`
-### [Flask-Cors](https://pypi.org/project/Flask-Cors/):`pip install python-dotenv`
+[python-dotenv](https://pypi.org/project/python-dotenv/):`pip install -U flask-cors`
+[Flask-Cors](https://pypi.org/project/Flask-Cors/):`pip install python-dotenv`
 
 ## Run the App!
 `python -m flask run --host=0.0.0.0`
