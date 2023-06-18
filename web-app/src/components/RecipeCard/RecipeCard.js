@@ -1,12 +1,10 @@
 import './RecipeCard.css'
 
-
-
 import { useEffect, useMemo, useState } from 'react';
 
 import './RecipeCard.css';
 
-const RECIPE_CONTENT_IP_ADDR = "http://54.177.115.132:5000/getRecipeInfo?";
+const RECIPE_CONTENT_IP_ADDR = "http://54.177.115.132:5000/getRecipeInfo?"; 
 
 const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutrient: amount
 
@@ -15,25 +13,24 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
     //     setLikes(likes + 1);
     // };
     
-    const [isExpanded, setIsExpanded] = useState(false);
-    const toggleExpansion = () => {
+    // const [isExpanded, setIsExpanded] = useState(false);
+    /*const toggleExpansion = () => {
         setIsExpanded(!isExpanded);
-    };
+    };*/
 
     const getQuery = () => {
-        console.log()
         return RECIPE_CONTENT_IP_ADDR + "id=" + recipe.id;
     }
 
     const getRecipeContents = () => {
         // if (!(recipe.id in Object.keys(recipeContent))) {
         const query = getQuery();
-        console.log("query: ", query);
+        console.log("query: ", query); //
         const fetchData = async () => {
             try {
                 const response = await fetch(query);
                 const jsonData = await response.json();
-                console.log("json data: ", jsonData);             
+                console.log("json data: ", jsonData); //             
                 return jsonData;
             }
             catch (error) {
@@ -70,7 +67,7 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
         .then((recipe_content) => {
             console.log("recipe content", recipe_content);
             if (recipe_content === undefined) {
-            return;
+                return;
             }
             if (recipe_content.ingredients !== undefined){
                 ingredients = recipe_content.ingredients;
@@ -81,8 +78,8 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
 
             readyInMinutes = recipe_content.readyInMinutes;
             servings = recipe_content.servings;
-            console.log("ingredients: ", ingredients);
-            console.log("instruction: ", instruction);
+            console.log("ingredients: ", ingredients); //
+            console.log("instruction: ", instruction); //
         })
         .then(() => render_page())
         .catch((error) => {
@@ -92,11 +89,12 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
     
 
     const render_page = () => {
-        console.log("got here");
+        console.log("got here"); //
         return (
         // <div className={isExpanded ? 'expanded-project-card' : 'project-card'}>
+        //      <div onClick={toggleExpansion}> for div below project-card
         <div className='project-card'>
-            <div onClick={toggleExpansion}>
+            <div>
                 <img src={recipe['image']}  className="card-img"  alt="Image of a recipe" />
                 <h2 className="card-title">{recipe['title']}</h2>
                 <div className='recipe-info'>
