@@ -24,7 +24,7 @@ keysToKeep = ['cookingMinutes', 'cuisines', 'dairyFree', 'diets', 'dishTypes', '
 
 
 @app.route("/getRecipes", methods=["GET", "POST"])
-def api_test():
+def get_recipes():
     print(os.environ.get('Spoon_api_key'))
     # Retrieve multiple query parameters from the request URL
     # Types of n1, n2, n3 -> String
