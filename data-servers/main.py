@@ -9,7 +9,7 @@ CORS(app)
 load_dotenv()
 
 # perdetermined list of nutrients to choose from
-# http://127.0.0.1:5000/data?n1=value1&n2=value2&n3=value3
+# http://127.0.0.1:5000/getRecipes?n1=value1&n2=value2&n3=value3
 
 min_amount = 50
 num_recipe = 5
