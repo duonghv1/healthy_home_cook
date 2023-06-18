@@ -18,6 +18,7 @@ This webpage is hosted on AWS EC2 instance, and below instructions applied to ma
 
 
 ## Library Install
+- [requests](https://requests.readthedocs.io/en/latest/):`pip install requests`
 - [python-dotenv](https://pypi.org/project/python-dotenv/):`pip install -U flask-cors`
 - [Flask-Cors](https://pypi.org/project/Flask-Cors/):`pip install python-dotenv`
 
