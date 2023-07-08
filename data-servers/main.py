@@ -57,9 +57,25 @@ def get_recipes():
 
     status_code = response.status_code
     result = json.loads(response.text)
-    json_data = []
-    for r in result["results"]:
-        json_data.append({k:r[k] for k in keysToKeep if k in r})
+
+    json_data = {}
+    if status_code == 200:
+        recipe_data_list = []
+        for r in result["results"]:
+            recipe_data_list.append({k:r[k] for k in keysToKeep if k in r})
+        json_data["result"] = recipe_data_list
+        json_data["number"] = result["number"]
+        assert json_data["number"] == len(recipe_data_list), "Number of returned recipes incorrect!"
+    elif status_code == 401:
+        print("Error 401: Invalid authentication credentials")
+    elif status_code == 500:
+        print("Error 500: Internal server error")
+    elif status_code == 400:
+        print("Error 400: Bad request")
+    elif status_code == 402:
+        print("Error 402: Paymen required")
+    else:
+        print("Unknown error! Status_code = %d", status_code)    
 
     # print(json_data)
     return json_data
