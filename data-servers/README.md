@@ -13,8 +13,8 @@ This webpage is hosted on AWS EC2 instance, and below instructions applied to ma
 - Windows: `venv\Scripts\activate`
 
 ### Set environment variable FLASK_APP.
-- Linux/Mac: `export FLASK_APP=app.py`
-- Windows: `$env:FLASK_APP="app.py"`
+- Linux/Mac: `export FLASK_APP=main.py`
+- Windows: `$env:FLASK_APP="main.py"`
 
 
 ## Library Install
