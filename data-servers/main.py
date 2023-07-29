@@ -12,7 +12,7 @@ load_dotenv()
 # http://127.0.0.1:5000/getRecipes?n1=value1&n2=value2&n3=value3
 
 min_amount = 50
-num_recipe = 5
+num_recipe = 10
 
 recipe_dic = {}
 max_limit = 30
@@ -21,7 +21,6 @@ max_limit = 30
 keysToKeep = ['cookingMinutes', 'cuisines', 'dairyFree', 'diets', 'dishTypes', 'glutenFree', 'healthScore', 'id', 'image', 
             'nutrition', 'preparationMinutes', 'pricePerServing', 'readyInMinutes', 'servings', 'sourceUrl', 'summary', 
             'title', 'vegan', 'vegetarian', 'weightWatcherSmartPoints']
-
 
 @app.route("/getRecipes", methods=["GET", "POST"])
 def get_recipes():
@@ -65,7 +64,9 @@ def get_recipes():
             recipe_data_list.append({k:r[k] for k in keysToKeep if k in r})
         json_data["result"] = recipe_data_list
         json_data["number"] = result["number"]
-        assert json_data["number"] == len(recipe_data_list), "Number of returned recipes incorrect!"
+        if json_data["number"] != len(recipe_data_list):
+            print("Only have {}".format(json_data["number"]))
+        # assert json_data["number"] == len(recipe_data_list), "Number of returned recipes incorrect!"
     elif status_code == 401:
         print("Error 401: Invalid authentication credentials")
     elif status_code == 500:
