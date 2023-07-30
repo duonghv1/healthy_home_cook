@@ -38,9 +38,16 @@ const SubmitButton = (params) => { // choices is a list: ['D', 'A', 'B12'] etc
         console.log(query);
 
         const fetchData = async () => {
-            try {
-                const response = await fetch(query);
-                const jsonData = await response.json();
+            const jsonData = require("../../resources/dummy_data.json"); //placeholder json results
+            console.log(jsonData);
+            setResults((prevResults) => { // prevResults is a list
+                const updatedResults = [...prevResults, jsonData];
+                return updatedResults;
+            });
+            /*try {
+                //const response = await fetch(query);
+                //const jsonData = await response.json();
+                const jsonData = require("../../../resources/dummy_data.json");
                 console.log(jsonData);
                 setResults((prevResults) => { // prevResults is a list
                     const updatedResults = [...prevResults, jsonData];
@@ -49,7 +56,7 @@ const SubmitButton = (params) => { // choices is a list: ['D', 'A', 'B12'] etc
             }
             catch (error) {
                 alert("Error: ", error);
-            }
+            }*/
         };
 
         fetchData();
