@@ -56,77 +56,95 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
         );
     }
 
+    const formattedRecipeTime = (time) => {
+        if (time < 0) {
+            return;
+        } else {
+            const hours = Math.floor(time / 60) ;
+            const minutes = time % 60;
+            return ((hours != 0 ? hours + (hours > 1 ? " hours " : "hour ") : "") + 
+                    (minutes != 0 ? minutes + (minutes > 1 ? " minutes" : " minute") : ""));
+        }
+    }
+
 
     let ingredients = [];
     let instruction = [];
     let readyInMinutes = 0;
     let servings = 0;
 
+    //UNCOMMENT LATER
+    // const recipe_content = getRecipeContents()
+    //     .then((recipe_content) => {
+    //         console.log("recipe content", recipe_content);
+    //         if (recipe_content === undefined) {
+    //             return;
+    //         }
+    //         if (recipe_content.ingredients !== undefined){
+    //             ingredients = recipe_content.ingredients;
+    //         }
+    //         if (recipe_content.instruction !== undefined){
+    //             instruction = recipe_content.ingredients;
+    //         }
 
-    const recipe_content = getRecipeContents()
-        .then((recipe_content) => {
-            console.log("recipe content", recipe_content);
-            if (recipe_content === undefined) {
-                return;
-            }
-            if (recipe_content.ingredients !== undefined){
-                ingredients = recipe_content.ingredients;
-            }
-            if (recipe_content.instruction !== undefined){
-                instruction = recipe_content.ingredients;
-            }
-
-            readyInMinutes = recipe_content.readyInMinutes;
-            servings = recipe_content.servings;
-            console.log("ingredients: ", ingredients); //
-            console.log("instruction: ", instruction); //
-        })
-        .then(() => render_page())
-        .catch((error) => {
-            // Handle any errors that occurred during the promise execution
-            console.error("Error retrieving recipe content:", error);
-        });
-    
+    //         readyInMinutes = recipe_content.readyInMinutes;
+    //         servings = recipe_content.servings;
+    //         console.log("ingredients: ", ingredients); //
+    //         console.log("instruction: ", instruction); //
+    //     })
+    //     .then(() => render_page())
+    //     .catch((error) => {
+    //         // Handle any errors that occurred during the promise execution
+    //         console.error("Error retrieving recipe content:", error);
+    //     });
 
     const render_page = () => {
-        console.log("got here"); //
         return (
         // <div className={isExpanded ? 'expanded-project-card' : 'project-card'}>
         //      <div onClick={toggleExpansion}> for div below project-card
         <div className='project-card'>
-            <div>
-                <img src={recipe['image']}  className="card-img"  alt="Image of a recipe" />
+            <img src={recipe['image']}  className="card-img"  alt="Image of a recipe" />
+            <div className='card-text'>
                 <h2 className="card-title">{recipe['title']}</h2>
                 <div className='recipe-info'>
                     <h3>General Information</h3>
                     {console.log("recipe:", recipe, userchoices)}
                     <p>
+                        {recipe['readyInMinutes'] >= 0 ? "Total time: " + formattedRecipeTime(recipe['readyInMinutes']) : undefined}
+                    </p>
+                    <p>
+                        {recipe['servings'] >= 0 ? "Servings: " + recipe['servings'] : undefined}
+                    </p>
+                    <p>
                         {userchoices.map((choice) => (choice + ': ' + recipe[choice.toLowerCase()] + '\n'))}
                     </p>
                 </div>
-                {/* {isExpanded && 
-                    <>
-                        <div className='recipe-info'>
-                            <p>{"Cook Time: " + recipe_content.readyInMinutes}</p>
-                            <p>{"Serving Size: " + recipe_content.servings}</p>
-                        </div>
-                        <div>
-                            <h3>Ingredients</h3>
-                            <ul>
-                                <li>{ingredients.map((ingredient) => (formattedRecipeIngredient(ingredient)))}</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3>instruction</h3>
-                            <p>
-                                {instruction.map((instruction_block) => (recipeInstructionBlock(instruction_block)))}
-                            </p>
-                        </div>
-                    </>
-                } */}
             </div>
+
+            {/* {isExpanded && 
+                <>
+                    <div className='recipe-info'>
+                        <p>{"Cook Time: " + recipe_content.readyInMinutes}</p>
+                        <p>{"Serving Size: " + recipe_content.servings}</p>
+                    </div>
+                    <div>
+                        <h3>Ingredients</h3>
+                        <ul>
+                            <li>{ingredients.map((ingredient) => (formattedRecipeIngredient(ingredient)))}</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>instruction</h3>
+                        <p>
+                            {instruction.map((instruction_block) => (recipeInstructionBlock(instruction_block)))}
+                        </p>
+                    </div>
+                </>
+            } */}
         </div>
     )};
+
+    return render_page(); //TEMP
 };
 
 export default RecipeCard;

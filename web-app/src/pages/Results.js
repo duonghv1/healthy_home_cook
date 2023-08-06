@@ -19,9 +19,10 @@ export default function Results({results, clickedButtons}) {
         return;
     }
     
-    const latest_result = results[results.length - 1];
+    const latest_result = results[results.length - 1]; //returns jsonResults part of results
     console.log("in results, showing most recent result list:", latest_result);
-
+    
+    console.log("In results.js, latest_result is: ", latest_result, typeof latest_result);
     if (latest_result.length === 0){
         console.log("`result` has nothing in there!");
         return (
@@ -44,7 +45,7 @@ export default function Results({results, clickedButtons}) {
             <div className="recipe-card-container">
                 
             
-            {latest_result.map((recipe) => {
+            {latest_result["result"].map((recipe) => {
                 console.log("In results.js, recipe is: ", recipe, typeof recipe);
                 return <RecipeCard recipe={recipe} userchoices={clickedButtons} />; 
             })}

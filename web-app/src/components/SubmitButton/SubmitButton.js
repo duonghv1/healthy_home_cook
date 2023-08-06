@@ -38,12 +38,13 @@ const SubmitButton = (params) => { // choices is a list: ['D', 'A', 'B12'] etc
         console.log(query);
 
         const fetchData = async () => {
-            const jsonData = require("../../resources/dummy_data.json"); //placeholder json results
+            const jsonData = require("../../resources/dummy_data.json"); //TEMP placeholder json results
             console.log(jsonData);
             setResults((prevResults) => { // prevResults is a list
                 const updatedResults = [...prevResults, jsonData];
                 return updatedResults;
             });
+            //UNCOMMENT LATER
             /*try {
                 //const response = await fetch(query);
                 //const jsonData = await response.json();
