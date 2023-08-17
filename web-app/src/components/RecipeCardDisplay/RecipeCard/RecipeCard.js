@@ -2,9 +2,10 @@ import './RecipeCard.css'
 
 import { useEffect, useMemo, useState } from 'react';
 
-import './RecipeCard.css';
-
 const RECIPE_CONTENT_IP_ADDR = "http://54.177.115.132:5000/getRecipeInfo?"; 
+
+
+//IF FURTHER INFO IS NEEDED (INSTRUCTIONS, INGREDIENTS), CACHE IF ALREADY FETCHED BEFORE
 
 const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutrient: amount
 
@@ -107,7 +108,6 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
             <div className='card-text'>
                 <h2 className="card-title">{recipe['title']}</h2>
                 <div className='recipe-info'>
-                    <h3>General Information</h3>
                     {console.log("recipe:", recipe, userchoices)}
                     <p>
                         {recipe['readyInMinutes'] >= 0 ? "Total time: " + formattedRecipeTime(recipe['readyInMinutes']) : undefined}
