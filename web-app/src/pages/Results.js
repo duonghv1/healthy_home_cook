@@ -15,7 +15,7 @@ export default function Results({results, clickedButtons}) { //add component Rec
     //     navigate("/results");
     // }
 
-    const [sortMethod, changeSortMethod] = useState('A-Z');
+    const [sortMethod, changeSortMethod] = useState('title');
 
     if (results.length === 0){
         return;
@@ -30,7 +30,7 @@ export default function Results({results, clickedButtons}) { //add component Rec
                     <p class="nutrients-display">{clickedButtons.join(" - ")}</p>
                 </div>
                 <div className="sort-bar">
-                    <p class = "sort-by">Sort by </p>
+                    {/* <p class = "sort-by">Sort by </p> */}
                     <SortDropdown sortMethod={sortMethod} changeSortMethod={changeSortMethod}/>;
                 </div>
             </div>
