@@ -1,5 +1,4 @@
 import './SortDropdown.css'
-import { CDropdown, CDropdownToggle, CDropdownMenu, CDropdownItem } from '@coreui/react';
 import React, { useState } from 'react'
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
