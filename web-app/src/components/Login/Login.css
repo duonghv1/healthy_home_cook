@@ -1,0 +1,27 @@
+.login-form {
+    border: 1px solid gray;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5rem 4rem;
+    max-width: 100%;
+  }
+  
+  @media screen and (max-width: 375px) {
+    .login-form {
+      padding: 3rem 2rem;
+      margin: 10px;
+    }
+  }
+  
+  .login-form h1 {
+    font-size: 30px;
+  }
+  
+  .convert {
+    background: none;
+    padding: 0;
+  }
+  
