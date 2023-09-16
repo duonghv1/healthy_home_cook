@@ -13,9 +13,9 @@ Healthy Home Cook is a website that allows users to filter for recipes according
 
 #### Extra
 
-- [ ] Add a user login interface with Firebase.
-- [ ] Create a filter system that ranks the recipes found according to the user's preferences (popularity, calorie count, etc.).
-- [ ] Filter system also includes the option to toggle certain options on and off (vegan, vegetarian, gluten-free, etc.).
+- [x] Add a user login interface with Firebase.
+- [x] Create a filter system that ranks the recipes found according to the user's preferences (popularity, calorie count, etc.).
+- [x] Filter system also includes the option to toggle certain options on and off (vegan, vegetarian, gluten-free, etc.).
 - [ ] Construct a feature next to each recipe that the user can interact with as a "like" button.
 - [ ] Allow the user to input ailments/illnesses/conditions that the user may have.
 
