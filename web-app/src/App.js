@@ -6,7 +6,9 @@ import Results from './pages/Results';
 import Home from './pages/Home'; 
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
-import { auth, onAuthStateChanged } from "./lib/firebase";
+import { auth } from "./lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+
 // import About from './pages/About';
 
 function App() {
