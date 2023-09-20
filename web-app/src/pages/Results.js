@@ -5,58 +5,36 @@
 // data service is accessible via a URL, returns a JSON function
 
 import './Results.css'
-import RecipeCard from '../components/RecipeCard/RecipeCard';
+import RecipeCardDisplay from '../components/RecipeCardDisplay/RecipeCardDisplay';
+import SortDropdown from '../components/RecipeCardDisplay/SortDropdown/SortDropdown';
 import React, { useState } from 'react'
 
-export default function Results({results, clickedButtons}) {
+export default function Results({results, clickedButtons}) { //add component RecipeCardDisplay with parameter sortMethod
     // const navigate = useNavigate();
     // if (results.length == 0){
     //     navigate("/results");
     // }
-    const [recipeContent, setRecipeContent] = useState({});
-    
+
+    const [sortMethod, changeSortMethod] = useState('title');
+
     if (results.length === 0){
         return;
     }
     
-    const latest_result = results[results.length - 1];
-    console.log("in results, showing most recent result list:", latest_result);
-
-    if (latest_result.length === 0){
-        console.log("`result` has nothing in there!");
-        return (
-            <>
-            <div className="nutrients-chosen"> 
-                <p class = "results">RESULTS FOR:</p>
-                <p class="nutrients-display">{clickedButtons.join(" - ")}</p>
+    const latest_result = results[results.length - 1]; //returns jsonResults part of results
+    return(
+        <div>
+            <div className='display-bar'>
+                <div className="nutrients-chosen"> 
+                    <p class = "results">RESULTS FOR:</p>
+                    <p class="nutrients-display">{clickedButtons.join(" - ")}</p>
+                </div>
+                <div className="sort-bar">
+                    {/* <p class = "sort-by">Sort by </p> */}
+                    <SortDropdown sortMethod={sortMethod} changeSortMethod={changeSortMethod}/>;
+                </div>
             </div>
-            <div className="recipe-card-container"></div>
-            <h2>No results found.</h2>
-            </>
-        )
-    }else{
-        return(
-            <>
-            <div className="nutrients-chosen"> 
-                <p class = "results">RESULTS FOR:</p>
-                <p class="nutrients-display">{clickedButtons.join(" - ")}</p>
-            </div>
-            <div className="recipe-card-container">
-                
-            
-            {latest_result.map((recipe) => {
-                console.log("In results.js, recipe is: ", recipe, typeof recipe);
-                return <RecipeCard recipe={recipe} userchoices={clickedButtons} />; 
-            })}
-            </div>
-            </>
-        );
-    }
-    
-
-   
+            <RecipeCardDisplay results={latest_result['result']} clickedButtons={clickedButtons} sortMethod={sortMethod}/>
+        </div>
+    );
 }
-
-
-
-

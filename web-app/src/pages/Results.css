@@ -1,10 +1,9 @@
-.recipe-card-container {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
-    grid-gap: 30px;
-    margin: 30px;
+.nutrients-display{
+    font-size: 36px;
+    margin: 0px;
+    padding: 0px;
+    margin-left: 35px;
+    font-family: 'georgia';
 }
 
 .results{
@@ -16,12 +15,14 @@
     font-family: 'georgia';
 }
 
-.nutrients-display{
-    font-size: 36px;
-    margin: 0px;
-    padding: 0px;
-    margin-left: 35px;
-    font-family: 'georgia';
+.display-bar{
+    display: flex;
+    justify-content: space-between;
 }
 
-
+.sort-bar{
+    display: flex;
+    margin-top: 15px;
+    margin-right: 35px;
+    font-size: 0px;
+}
