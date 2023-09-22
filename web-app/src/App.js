@@ -36,15 +36,8 @@ function App() {
 
   return (
     <>
-      <nav>
-        {!isLoggedIn ? (
-          <a href="/login">Login</a>
-        ) : (
-          <a href="/logout">Logout</a>
-        )}
-      </nav>
       <Router>
-        <Navbar />
+        <Navbar logInStatus={isLoggedIn} />
         <Routes>
           <Route path='/' exact element={<Home setResults={setResults} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>} />
           <Route path='/home' element={<Home setResults={setResults} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>} />

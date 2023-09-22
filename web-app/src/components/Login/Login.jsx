@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  auth
-} from "../../lib/firebase";
+import {auth} from "../../lib/firebase";
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import "./Login.css";
 
@@ -19,14 +17,11 @@ function Login() {
 
   const navigate = useNavigate();
 
-  // TODO:
   // This component consolidates logging in and creating an account into one
   // component. It should use a state variable to render the two different
   // forms.
+  const [isLogin, setIsLogin] = useState(false);
 
-  const [isLogin, setIsLogin] = useState(true);
-
-  // TODO:
   // Handle submission of the form. If a user is logging in, then this function
   // should call the `signInWithEmailAndPassword` function to log the user in.
   // Otherwise, it should call the `createUserWithEmailAndPassword` function to
@@ -34,16 +29,21 @@ function Login() {
   // redirect the user to the home page afterwards.
   function handleSubmit(e) {
     e.preventDefault(); 
+    console.log(e);
     if (isLogin){
+      console.log("Logging In");
+      // Q: make sure password is similar to confirm-password?
       signInWithEmailAndPassword(auth, userInput.email, userInput.password)
       .then((userCredential) =>{
         navigate("/");
+        console.log("logged in");
       })
       .catch((err) => {
         console.log(err);
       })
     }
     else{
+      console.log(" signing up");
       createUserWithEmailAndPassword(auth, userInput.email, userInput.password)
         .then((userCredential) =>{
           navigate("/");
@@ -54,88 +54,75 @@ function Login() {
     }
   }
 
+  const [modalVisible, setModalVisible] = useState(false);
+
+  // Function to open the modal when user clicks "Log In"
+  const openModal = () => {
+    setModalVisible(true);
+    console.log(modalVisible);
+  }
+
+  // Function to close the modal
+  const closeModal = () => {
+    setModalVisible(false);
+  }
+
+  // JSX for the login form
   return (
-    <form className="login-form" method="post" onSubmit={handleSubmit}>
-      {isLogin ? (
-        <>
-          <h1>Login</h1>
-          <div className="form-group">
-            <label htmlFor="f-email">Email</label>
-            <input
-              type="email"
-              id="f-email"
-              name="email"
-              value={userInput.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="f-password">Password</label>
-            <input
-              type="password"
-              id="f-password"
-              name="password"
-              value={userInput.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <button
-              type="button"
-              className="convert"
-              onClick={() => setIsLogin(!isLogin)}
-            >
-              Create Account
-            </button>
-          </div>
-        </>
-      ) : (
-        <>
-          <h1>Create Account</h1>
-          <div className="form-group">
-            <label htmlFor="f-email">Email</label>
-            <input
-              type="text"
-              id="f-email"
-              name="email"
-              value={userInput.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="f-password">Password</label>
-            <input
-              type="password"
-              id="f-password"
-              name="password"
-              value={userInput.password}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="f-confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              id="f-confirm-password"
-              name="confirmPassword"
-              value={userInput.confirmPassword}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="form-group">
-            <button
-              type="button"
-              className="convert"
-              onClick={() => setIsLogin(!isLogin)}
-            >
-              Have an account? Log in.
-            </button>
-          </div>
-        </>
+    <div className="login-container">
+      <button id="login-btn" onClick={openModal} style={{ width: 'auto' }}>Log in</button>
+
+      {modalVisible && (
+        <div id="id01" className="modal">
+          <form className="modal-content animate" onSubmit={handleSubmit} method="post">
+            
+            <div className="imgcontainer">
+              <button onClick={closeModal} id="close" title="Close Modal">&times;</button>
+            </div>
+            
+            <div className="section-container"><h1>Login</h1></div>
+            <div className="section-container">
+              
+              <label htmlFor="email"><b>Email</b></label>
+              <input type="email" placeholder="Enter Email" name="email" 
+                value={userInput.email}  onChange={handleChange}
+                required />
+
+              <label htmlFor="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password"
+                value={userInput.password} onChange={handleChange} 
+                required />
+
+              <label htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  name="confirmPassword"
+                  value={userInput.confirmPassword}
+                  onChange={handleChange}
+                  required
+                />
+              {/* TODO: forgot/change password
+               <span className="psw">Forgot <a href="#">password?</a></span> */}
+            </div>
+
+            <div className="section-container" style={{ backgroundColor: '#f1f1f1' }}>
+              <button type="submit" onClick={() => setIsLogin(true)}>Login</button>
+            </div>
+            
+            <div className="section-container" style={{ backgroundColor: '#f1f1f1' }}>
+              <button type="submit" onClick={() => setIsLogin(false)}>Create Account</button>
+            </div>
+          </form>
+        </div>
       )}
-      <button type="submit">Submit</button>
-    </form>
+
+      {/* TODO: JavaScript-like behavior to close the modal when clicking outside
+      {modalVisible && ( 
+        <div onClick={closeModal} className="modal" style={{ backgroundColor: '#f1f1f1'}}></div>
+      )}  */}
+    </div>
   );
 }
+
 
 export default Login;

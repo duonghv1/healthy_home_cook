@@ -1,0 +1,16 @@
+#logout-btn {
+    border-radius: 20%;
+    background-color: #A7D489;
+    color: black;
+    border: none;
+    height: 8vh;
+    width: 100%;
+    font-family: 'georgia';
+    font-size: 2vh;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+#logout-btn:hover {
+    opacity: 0.7;
+}
