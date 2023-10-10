@@ -6,7 +6,9 @@ import Results from './pages/Results';
 import Home from './pages/Home'; 
 import Login from "./components/Login/Login";
 import Logout from "./components/Logout/Logout";
-import { auth, onAuthStateChanged } from "./lib/firebase";
+import { auth } from "./lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+
 // import About from './pages/About';
 
 function App() {
@@ -34,15 +36,8 @@ function App() {
 
   return (
     <>
-      <nav>
-        {!isLoggedIn ? (
-          <a href="/login">Login</a>
-        ) : (
-          <a href="/logout">Logout</a>
-        )}
-      </nav>
       <Router>
-        <Navbar />
+        <Navbar logInStatus={isLoggedIn} />
         <Routes>
           <Route path='/' exact element={<Home setResults={setResults} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>} />
           <Route path='/home' element={<Home setResults={setResults} clickedButtons={clickedButtons} setClickedButtons={setClickedButtons}/>} />
