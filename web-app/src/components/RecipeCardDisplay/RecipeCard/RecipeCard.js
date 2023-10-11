@@ -7,7 +7,7 @@ const RECIPE_CONTENT_IP_ADDR = "http://54.177.115.132:5000/getRecipeInfo?";
 
 //IF FURTHER INFO IS NEEDED (INSTRUCTIONS, INGREDIENTS), CACHE IF ALREADY FETCHED BEFORE
 
-const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutrient: amount
+const RecipeCard = ({ recipe, userchoices, sortMethod }) => { // userchoices: a dict of nutrient: amount
 
     // const [likes, setLikes] = useState(project.likes);
     // const handleLike = () => {
@@ -18,6 +18,11 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
     /*const toggleExpansion = () => {
         setIsExpanded(!isExpanded);
     };*/
+
+    const openRecipe = () => {
+        window.open(recipe["sourceUrl"], "_blank");
+        console.log(recipe["sourceUrl"]);
+    }
 
     const getQuery = () => {
         return RECIPE_CONTENT_IP_ADDR + "id=" + recipe.id;
@@ -68,6 +73,24 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
         }
     }
 
+    const sortMethodName = {'title': null, 'healthScore': "Health Score", 'readyInMinutes': null, 
+    'pricePerServing': "Ingredients Cost", 'servings': null};
+
+    const formattedSortVariable = () => {
+        console.log(sortMethod);
+        console.log(recipe[sortMethod]);
+        if (sortMethodName[sortMethod]) {
+            let sortVariableText = "";
+
+            if (sortMethod == "pricePerServing") {
+                sortVariableText = `Cost: $${(recipe[sortMethod]).toString(10)}`;
+            } else {
+                sortVariableText = `${sortMethodName[sortMethod]}: ${(recipe[sortMethod]).toString(10)}`;
+            }
+            return <p>{sortVariableText}</p>;
+        }
+    }
+
 
     let ingredients = [];
     let instruction = [];
@@ -104,9 +127,9 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
         // <div className={isExpanded ? 'expanded-project-card' : 'project-card'}>
         //      <div onClick={toggleExpansion}> for div below project-card
         <div className='project-card'>
-            <img src={recipe['image']}  className="card-img"  alt="Image of a recipe" />
+            <img src={recipe['image']}  className="card-img"  alt="Image of a recipe" onClick={openRecipe}/>
             <div className='card-text'>
-                <h2 className="card-title">{recipe['title']}</h2>
+                <h2 className="card-title" onClick={openRecipe}>{recipe['title']}</h2>
                 <div className='recipe-info'>
                     {console.log("recipe:", recipe, userchoices)}
                     <p>
@@ -118,6 +141,7 @@ const RecipeCard = ({ recipe, userchoices }) => { // userchoices: a dict of nutr
                     <p>
                         {userchoices.map((choice) => (choice + ': ' + recipe[choice.toLowerCase()] + '\n'))}
                     </p>
+                    {formattedSortVariable()}
                 </div>
             </div>
 

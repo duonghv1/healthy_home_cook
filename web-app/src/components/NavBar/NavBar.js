@@ -1,20 +1,30 @@
 import React from "react";
 import './NavBar.css'
-import { Nav, NavLink } from './NavBarElement';
-
+import { useNavigate } from "react-router-dom";
 import MySVG from '../../assets/Vector.svg';
+import Login from "../Login/Login";
+import Logout from "../Logout/Logout";
 
-export default function Navbar() {
+
+export default function Navbar({logInStatus}) {
+    const navigate = useNavigate();
+    console.log("is log in?" + logInStatus);
     return (
-        <Nav>
-        <ul>
-            <li>
-                <div className='svg-container'>
-                    <img src={MySVG} alt="SVG" />
-                    <NavLink to="/" className="nav-link">Healthy Home Cook</NavLink>
-                </div>
-            </li>
-        </ul>
-        </Nav>
+        <nav>
+           
+            <div className='svg-container'>
+                <img src={MySVG} alt="SVG" />
+                <a href="/">Healthy Home Cook</a>
+            </div>
+                
+            <div id="login-container">
+                {!logInStatus ? (
+                    // <button onClick={login}>Login</button>
+                    <Login></Login>
+                ) : (
+                    <Logout></Logout>
+                )}
+            </div>
+        </nav>
       );
 }

@@ -1,0 +1,170 @@
+#login-btn {
+    margin-right: 30px;
+    border-radius: 20%;
+}
+
+
+.section-container > h1 {
+  font-size: 5vh;
+  text-align: center;
+}
+
+/* Bordered form */
+.login-container form {
+  font-family: 'Georgia';
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 10px 2px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+
+/* Set a style for all buttons in the login form */
+.login-container button{
+    background-color: #A7D489;
+    color: black;
+    border: none;
+    height: 8vh;
+    width: 100%;
+    font-family: 'georgia';
+    font-size: 2vh;
+    cursor: pointer;
+    padding: 14px 20px;
+    margin: 8px 0;
+
+}
+
+
+.login-container form label {
+  font-size: 2vh;
+}
+
+
+.login-container form button {
+  font-size: 2.5vh;
+}
+
+
+.login-container .cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f26156;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.7;
+}
+
+.cancelbtn:hover {
+  background-color: #f74e42;
+  opacity: 0.7;
+}
+
+
+label,input{
+  display: block;
+}
+
+/* Add padding to containers */
+.section-container {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+
+/* The Modal (background) */
+.modal {
+  /* display: none; Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5px auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+  height: 60%;
+}
+
+
+/* The Close Button */
+#close {
+  /* Position it in the top right corner outside of the modal */
+  float: right;
+  margin-right: 1%;
+  margin-top: 1%;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center vertically as well */
+  border-radius: 10%; /* Use 50% for a circle */
+  width: 50px; /* Use a specific width */
+  height: 50px;
+  color: #000;
+  font-size: 3vh;
+  font-weight: bold;
+  background-color: #ada4a4;
+  
+}
+
+/* Close button on hover */
+#close:hover,
+#close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
