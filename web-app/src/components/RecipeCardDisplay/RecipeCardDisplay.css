@@ -5,5 +5,7 @@
     /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
     grid-gap: 30px;
     margin: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
     justify-content: space-between;
 }

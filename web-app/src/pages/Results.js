@@ -22,6 +22,7 @@ export default function Results({results, clickedButtons}) { //add component Rec
     }
     
     const latest_result = results[results.length - 1]; //returns jsonResults part of results
+    console.log(latest_result);
     return(
         <div>
             <div className='display-bar'>

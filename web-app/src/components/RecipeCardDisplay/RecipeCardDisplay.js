@@ -36,7 +36,7 @@ export default function RecipeCardDisplay({results, clickedButtons, sortMethod='
     return(
         <div className="recipe-card-container">
             {sortedResults.map((recipe) => {
-                return <RecipeCard recipe={recipe} userchoices={clickedButtons} />; 
+                return <RecipeCard recipe={recipe} userchoices={clickedButtons} sortMethod={sortMethod}/>; 
             })}
         </div>
     );
